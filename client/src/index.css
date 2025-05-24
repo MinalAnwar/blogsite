@@ -1,0 +1,393 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.7% 44.7%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --primary: 220 90% 56%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.3% 10%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.3% 10%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 5% 64.9%;
+  --radius: 0.5rem;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 220 90% 56%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.3% 26.1%;
+  --sidebar-border: 240 5.9% 90%;
+  --sidebar-ring: 240 5% 64.9%;
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 220 90% 56%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 3.7% 15.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --chart-1: 220 70% 50%;
+  --chart-2: 160 60% 45%;
+  --chart-3: 30 80% 55%;
+  --chart-4: 280 65% 60%;
+  --chart-5: 340 75% 55%;
+  --sidebar-background: 240 10% 3.9%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 220 90% 56%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 3.7% 15.9%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 240 3.7% 15.9%;
+  --sidebar-ring: 240 4.9% 83.9%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  /* Smooth animations */
+  * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-foreground;
+  }
+
+  /* Focus styles */
+  .focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2;
+  }
+
+  /* Prose styles for rich text editor */
+  .prose {
+    @apply text-foreground;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-foreground font-semibold;
+  }
+
+  .prose h1 {
+    @apply text-3xl mt-6 mb-4;
+  }
+
+  .prose h2 {
+    @apply text-2xl mt-5 mb-3;
+  }
+
+  .prose h3 {
+    @apply text-xl mt-4 mb-2;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-4 ml-6;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-border pl-4 py-2 my-4 bg-muted italic;
+  }
+
+  .prose pre {
+    @apply bg-muted p-4 rounded-lg overflow-x-auto text-sm;
+  }
+
+  .prose code {
+    @apply bg-muted px-2 py-1 rounded text-sm;
+  }
+
+  .prose a {
+    @apply text-primary hover:underline;
+  }
+
+  .prose img {
+    @apply rounded-lg max-w-full h-auto;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  /* Gradient backgrounds */
+  .gradient-bg-blue {
+    background: linear-gradient(135deg, hsl(220, 90%, 56%) 0%, hsl(260, 90%, 56%) 100%);
+  }
+
+  .gradient-bg-purple {
+    background: linear-gradient(135deg, hsl(260, 90%, 56%) 0%, hsl(280, 90%, 56%) 100%);
+  }
+
+  .gradient-bg-light {
+    background: linear-gradient(135deg, hsl(220, 30%, 98%) 0%, hsl(260, 30%, 98%) 100%);
+  }
+
+  .gradient-bg-dark {
+    background: linear-gradient(135deg, hsl(240, 10%, 3.9%) 0%, hsl(240, 10%, 8%) 100%);
+  }
+
+  /* Card hover effects */
+  .card-hover {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .card-hover:hover {
+    @apply shadow-lg -translate-y-1;
+  }
+
+  /* Button loading state */
+  .button-loading {
+    @apply pointer-events-none relative;
+  }
+
+  .button-loading::after {
+    content: '';
+    @apply absolute inset-0 bg-current opacity-20 rounded animate-pulse;
+  }
+
+  /* Form input focus styles */
+  .input-focus {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .input-focus:focus {
+    @apply ring-2 ring-primary ring-offset-2 border-primary;
+  }
+
+  /* Notification animations */
+  .notification-enter {
+    animation: slideDown 0.3s ease-out;
+  }
+
+  .notification-exit {
+    animation: slideUp 0.3s ease-in;
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply bg-muted animate-pulse;
+  }
+
+  /* Custom utilities for the design system */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(220, 90%, 56%) 0%, hsl(260, 90%, 56%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, hsl(220, 90%, 56%) 0%, hsl(260, 90%, 56%) 100%) 1;
+  }
+
+  /* Navigation active state */
+  .nav-active {
+    @apply bg-primary/10 text-primary font-medium;
+    border-left: 3px solid hsl(var(--primary));
+  }
+
+  /* Chart styles */
+  .chart-bar {
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .chart-bar:hover {
+    @apply opacity-80 scale-105;
+  }
+
+  /* Editor specific styles */
+  .editor-content {
+    @apply focus:outline-none;
+  }
+
+  .editor-content h1,
+  .editor-content h2,
+  .editor-content h3,
+  .editor-content h4,
+  .editor-content h5,
+  .editor-content h6 {
+    @apply font-semibold mt-6 mb-3;
+  }
+
+  .editor-content h1 {
+    @apply text-3xl;
+  }
+
+  .editor-content h2 {
+    @apply text-2xl;
+  }
+
+  .editor-content h3 {
+    @apply text-xl;
+  }
+
+  .editor-content p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .editor-content ul,
+  .editor-content ol {
+    @apply mb-4 ml-6;
+  }
+
+  .editor-content li {
+    @apply mb-1;
+  }
+
+  .editor-content blockquote {
+    @apply border-l-4 border-primary pl-4 py-2 my-4 bg-muted/50 italic;
+  }
+
+  .editor-content pre {
+    @apply bg-muted p-4 rounded-lg my-4 overflow-x-auto text-sm font-mono;
+  }
+
+  .editor-content code {
+    @apply bg-muted px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .editor-content a {
+    @apply text-primary hover:underline;
+  }
+
+  .editor-content img {
+    @apply rounded-lg max-w-full h-auto my-4;
+  }
+}
