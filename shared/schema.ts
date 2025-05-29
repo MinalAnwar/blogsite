@@ -139,6 +139,11 @@ export const insertUserSchema = createInsertSchema(users).omit({
 export const insertFeedbackSchema = createInsertSchema(feedback).omit({
   id: true,
   createdAt: true,
+  sentiment: true,
+  sentimentScore: true,
+}).extend({
+  source: z.string().default("website"),
+  userId: z.string().optional(),
 });
 
 export const insertPostSchema = createInsertSchema(posts).omit({
